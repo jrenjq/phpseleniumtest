@@ -1,14 +1,14 @@
 pipeline {
 	agent none
 	stages {
-		// stage('Integration UI Test') {
-		// 	parallel {
+		stage('Integration UI Test') {
+			parallel {
 				stage('Deploy') {
 					agent any
 					steps {
-						sh 'docker run -d -p 80:80 --name my-apache-php-app -v c:/Users/jren/Documents/GitHub/jenkins-php-selenium-test/src:/var/www/html php:7.2-apache'
+						sh './jenkins/scripts/deploy.sh'
 						input message: 'Finished using the web site? (Click "Proceed" to continue)'
-						sh 'docker stop my-apache-php-app'
+						sh './jenkins/scripts/kill.sh'
 					}
 				}
 				stage('Headless Browser Test') {
@@ -28,7 +28,7 @@ pipeline {
 						}
 					}
 				}
-		// 	}
-		// }
+			}
+		}
 	}
 }
