@@ -6,7 +6,7 @@ pipeline {
 				stage('Deploy') {
 					agent any
 					steps {
-						sh 'docker run -d -p 80:80 --name my-apache-php-app -v c:\\Users\\jren\\Documents\\GitHub\\jenkins-php-selenium-test\\src:/var/www/html php:7.2-apache'
+						sh 'docker run -d -p 80:80 --name my-apache-php-app -v c:/Users/jren/Documents/GitHub/jenkins-php-selenium-test/src:/var/www/html php:7.2-apache'
 						input message: 'Finished using the web site? (Click "Proceed" to continue)'
 						sh 'docker stop my-apache-php-app'
 					}
